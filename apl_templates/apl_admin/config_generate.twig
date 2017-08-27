@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{ include("apl_includes/header_meta.twig") }}
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    {{ include("apl_includes/header.twig") }}
+  </header>
+  <aside class="main-sidebar">
+    {{ include("apl_includes/sidebar.twig") }}
+  </aside>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="{{ page_message_class }}">
+        <h4>{{ page_title }}</h4>
+        <p>{{ page_message|striptags("<a><b><br><i><li><strong><u><ul>")|raw }}</p>
+      </div>
+    </section>
+    <section class="content">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{ page_title }}</h3>
+        </div>
+        <form action="{{ script_filename }}" method="post">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Product</label>
+                <select name="product_id" class="form-control select2" style="width:100%;" data-placeholder="Choose product"><option></option>{% for item_array in products_array %}<option value="{{ item_array.value }}"{{ item_array.selected }}>{{ item_array.title }}</option>{% endfor %}</select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>License Verification Period</label>
+                <input type="text" name="config_apl_days" value="{{ config_apl_days }}" class="form-control" placeholder="Time period (in days) between automatic license verifications">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>License Storage Type</label>
+                <select name="config_apl_storage" class="form-control select2"><option value="DATABASE">Database</option><option value="FILE"{% if config_apl_storage=='FILE' %} selected{% endif %}>File</option></select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>License File Location</label>
+                <input type="text" name="config_apl_license_file_location" value="{{ config_apl_license_file_location }}" class="form-control" placeholder="Name and location of file to store license signature">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>MySQL Connection File Location</label>
+                <input type="text" name="config_apl_mysql_file_location" value="{{ config_apl_mysql_file_location }}" class="form-control" placeholder="Name and location of MySQL connection file">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>MySQL Table Name</label>
+                <input type="text" name="config_apl_database_table" value="{{ config_apl_database_table }}" class="form-control" placeholder="Name of table to store license signature">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Delete Cancelled License</label>
+                <select name="config_apl_delete_cancelled" class="form-control select2"><option value="NO">No</option><option value="YES"{% if config_apl_delete_cancelled=='YES' %} selected{% endif %}>Yes</option></select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Delete Hacked License</label>
+                <select name="config_apl_delete_cracked" class="form-control select2"><option value="NO">No</option><option value="YES"{% if config_apl_delete_cracked=='YES' %} selected{% endif %}>Yes</option></select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" name="submit_ok" class="btn btn-primary">Submit</button>
+        </div>
+        {% if action_success==1 %}
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Automatically Generated Configuration File</label>
+                <textarea name="automatically_generated_content" class="form-control" rows="20">{% autoescape false %}{{ config_file_content }}{% endautoescape %}</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        </form>
+      </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    {{ include("apl_includes/footer.twig") }}
+  </footer>
+</div>
+{{ include("apl_includes/footer_meta.twig") }}
+</body>
+</html>

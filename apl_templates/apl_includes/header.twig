@@ -1,0 +1,60 @@
+        <a href="index.php" class="logo">
+      <span class="logo-mini">{{ PRODUCT_STYLIZED_NAME_SHORT|striptags("<b>")|raw }}</span>
+      <span class="logo-lg">{{ PRODUCT_STYLIZED_NAME|striptags("<b>")|raw }}</span>
+    </a>
+    <nav class="navbar navbar-static-top">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-rss text-orange"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <ul class="menu">
+                  {% for item_array in twig_rss_feeds_array %}
+                    <li><a href="{{ item_array.full_url }}" target="_blank">{{ item_array.title }}<br>{{ item_array.date }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="footer"><a href="https://www.phpmillion.com/blog/" target="_blank">See All News</a></li>
+            </ul>
+          </li>
+          <li class="dropdown tasks-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-life-ring text-red"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header"><b>Help & Support</b></li>
+              <li>
+                <ul class="menu">
+                  <li><a href="help.php"><i class="fa fa-question-circle"></i> Help Section</a></li>
+                  <li><a href="updates.php"><i class="fa fa-cloud-download"></i> Software Updates</a></li>
+                  <li><a href="https://www.phpmillion.com/forums/" target="_blank"><i class="fa fa-comments-o"></i> Support Forums</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown tasks-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-user text-aqua"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header"><b>Administrator Menu</b></li>
+              <li>
+                <ul class="menu">
+                  <li><a href="admin_edit.php"><i class="fa fa-pencil-square-o"></i> Edit Profile</a></li>
+                  <li><a href="logout.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>

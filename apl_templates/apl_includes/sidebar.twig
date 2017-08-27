@@ -1,0 +1,15 @@
+<section class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="header">Manage your...</li>
+        {% for item_array in twig_sidebar_items_array %}
+            <li class="{{ item_array.class }}">
+                <a href="{{ item_array.target }}"><i class="fa {{ item_array.icon }}"></i> <span>{{ item_array.title }}</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class="treeview-menu">
+                {% for sub_item_array in item_array.sub_menu %}
+                    <li class="{{ sub_item_array.class }}"><a href="{{ sub_item_array.target }}"><i class="fa fa-angle-right"></i> {{ sub_item_array.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

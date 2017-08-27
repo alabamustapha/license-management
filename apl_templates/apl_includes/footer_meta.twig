@@ -1,0 +1,54 @@
+<script src="../plugins/jQuery/jquery.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugins/pace/pace.min.js"></script>
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="../plugins/select2/select2.full.min.js"></script>
+<script src="../plugins/input-mask/jquery.inputmask.js"></script>
+<script src="../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="../plugins/moment/moment.min.js"></script>
+<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../plugins/iCheck/icheck.min.js"></script>
+<script src="../plugins/fastclick/fastclick.min.js"></script>
+<script src="../dist/js/app.min.js"></script>
+<script>
+  $(function () {
+    $("[data-mask]").inputmask();
+
+    $(".select2").select2({
+      minimumResultsForSearch: 5,
+      placeholder: 'Choose one',
+    });
+
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%'
+    });
+
+    $('.check-all-rows')
+    .on('ifChecked', function() {
+      $('input[type=checkbox]').iCheck('check');
+    })
+    .on('ifUnchecked', function() {
+      $('input[type=checkbox]').iCheck('uncheck');
+    });
+
+    $(".custom_table").DataTable({
+    aoColumnDefs : [ {
+      bSortable : false,
+      aTargets : [ "sorting-disabled" ]
+      } ],
+    aaSorting:[],
+    lengthMenu: [ 10, 25, 50, 100, 200, 500 ],
+    pageLength: {{ RECORDS_ON_ADMIN_PAGE }},
+    });
+
+    $(".custom_table_minimal").DataTable({
+    paging: false,
+    ordering: false,
+    info: false
+    });
+  });
+</script>

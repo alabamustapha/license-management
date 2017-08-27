@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{ include("apl_includes/header_meta.twig") }}
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    {{ include("apl_includes/header.twig") }}
+  </header>
+  <aside class="main-sidebar">
+    {{ include("apl_includes/sidebar.twig") }}
+  </aside>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="{{ page_message_class }}">
+        <h4>{{ page_title }}</h4>
+        <p>{{ page_message|striptags("<a><b><br><i><li><strong><u><ul>")|raw }}</p>
+      </div>
+    </section>
+    <section class="content">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{ page_title }}</h3>
+        </div>
+        <form action="{{ script_filename }}" method="post">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Server Timezone</label>
+                <select name="timezone" class="form-control select2">{% for item_array in timezones_array %}<option value="{{ item_array.value }}"{{ item_array.selected }}>{{ item_array.title }}</option>{% endfor %}</select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Remote API</label>
+                <select name="api_status" class="form-control select2"><option value="1">Enabled</option><option value="0"{% if API_STATUS is defined and API_STATUS==0 %} selected{% endif %}>Disabled</option></select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Records per Page</label>
+                <select name="records_on_admin_page" class="form-control select2">{% for item_array in records_on_admin_page_array %}<option value="{{ item_array.value }}"{{ item_array.selected }}>{{ item_array.title }}</option>{% endfor %}</select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Records on Index Page</label>
+                <select name="records_on_index_page" class="form-control select2">{% for item_array in records_on_index_page_array %}<option value="{{ item_array.value }}"{{ item_array.selected }}>{{ item_array.title }}</option>{% endfor %}</select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" name="submit_ok" class="btn btn-primary">Submit</button>
+        </div>
+        </form>
+      </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    {{ include("apl_includes/footer.twig") }}
+  </footer>
+</div>
+{{ include("apl_includes/footer_meta.twig") }}
+</body>
+</html>

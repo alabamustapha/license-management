@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{ include("apl_includes/header_meta.twig") }}
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    {{ include("apl_includes/header_inactive.twig") }}
+  </header>
+  <aside class="main-sidebar">
+    {{ include("apl_includes/sidebar_inactive.twig") }}
+  </aside>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="{{ page_message_class }}">
+        <h4>{{ page_title }}</h4>
+        <p>{{ page_message|striptags("<a><b><br><i><li><strong><u><ul>")|raw }}</p>
+      </div>
+    </section>
+    <section class="content">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{ page_title }}</h3>
+        </div>
+        {% if action_success!=1 %}
+        <form action="{{ script_filename }}" method="post">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="CLIENT_EMAIL" value="{% if action_success!=1 %}{{ CLIENT_EMAIL }}{% endif %}" class="form-control" placeholder="Email address">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Purchase Code</label>
+                <input type="text" name="LICENSE_CODE" value="{% if action_success!=1 %}{{ LICENSE_CODE }}{% endif %}" class="form-control" placeholder="Your purchase code">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Root URL</label>
+                <input type="url" name="ROOT_URL" value="{% if action_success!=1 %}{{ current_url }}{% endif %}" class="form-control" placeholder="Full installation URL without / at the end">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" name="submit_ok" class="btn btn-primary">Submit</button>
+        </div>
+        </form>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    {{ include("apl_includes/footer.twig") }}
+  </footer>
+</div>
+{{ include("apl_includes/footer_meta.twig") }}
+</body>
+</html>

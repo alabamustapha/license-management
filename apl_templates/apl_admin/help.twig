@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{ include("apl_includes/header_meta.twig") }}
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    {{ include("apl_includes/header.twig") }}
+  </header>
+  <aside class="main-sidebar">
+    {{ include("apl_includes/sidebar.twig") }}
+  </aside>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="{{ page_message_class }}">
+        <h4>{{ page_title }}</h4>
+        <p>{{ page_message|striptags("<a><b><br><i><li><strong><u><ul>")|raw }}</p>
+      </div>
+    </section>
+    <section class="content">
+      <div class="box box-primary">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Using Application</h3>
+            </div>
+            <div class="box-body">
+              <div class="box-group" id="using_application">
+                {% for item_array in help_using_application_array %}
+                    {% autoescape false %}
+                    <div class="{{ item_array.help_topic_class }}">
+                        <div class="box-header with-border">
+                            <h4 class="box-title"><a data-toggle="collapse" data-parent="#{{ item_array.data_parent }}" href="#{{ item_array.collapse_id }}">{{ item_array.help_topic_title }}</a></h4>
+                        </div>
+                        <div id="{{ item_array.collapse_id }}" class="panel-collapse collapse">
+                            <div class="box-body text-justify">{{ item_array.help_topic_text }}</div>
+                        </div>
+                    </div>
+                    {% endautoescape %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Using API</h3>
+            </div>
+            <div class="box-body">
+              <div class="box-group" id="using_api">
+                {% for item_array in help_using_api_array %}
+                    {% autoescape false %}
+                    <div class="{{ item_array.help_topic_class }}">
+                        <div class="box-header with-border">
+                            <h4 class="box-title"><a data-toggle="collapse" data-parent="#{{ item_array.data_parent }}" href="#{{ item_array.collapse_id }}">{{ item_array.help_topic_title }}</a></h4>
+                        </div>
+                        <div id="{{ item_array.collapse_id }}" class="panel-collapse collapse">
+                            <div class="box-body text-justify">{{ item_array.help_topic_text }}</div>
+                        </div>
+                    </div>
+                    {% endautoescape %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="box box-primary">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Protecting Your Script</h3>
+            </div>
+            <div class="box-body">
+              <div class="box-group" id="protecting_your_script">
+                {% for item_array in help_protecting_your_script_array %}
+                    {% autoescape false %}
+                    <div class="{{ item_array.help_topic_class }}">
+                        <div class="box-header with-border">
+                            <h4 class="box-title"><a data-toggle="collapse" data-parent="#{{ item_array.data_parent }}" href="#{{ item_array.collapse_id }}">{{ item_array.help_topic_title }}</a></h4>
+                        </div>
+                        <div id="{{ item_array.collapse_id }}" class="panel-collapse collapse">
+                            <div class="box-body text-justify">{{ item_array.help_topic_text }}</div>
+                        </div>
+                    </div>
+                    {% endautoescape %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">FAQ & Troubleshooting</h3>
+            </div>
+            <div class="box-body">
+              <div class="box-group" id="faq_troubleshooting">
+                {% for item_array in help_faq_troubleshooting_array %}
+                    {% autoescape false %}
+                    <div class="{{ item_array.help_topic_class }}">
+                        <div class="box-header with-border">
+                            <h4 class="box-title"><a data-toggle="collapse" data-parent="#{{ item_array.data_parent }}" href="#{{ item_array.collapse_id }}">{{ item_array.help_topic_title }}</a></h4>
+                        </div>
+                        <div id="{{ item_array.collapse_id }}" class="panel-collapse collapse">
+                            <div class="box-body text-justify">{{ item_array.help_topic_text }}</div>
+                        </div>
+                    </div>
+                    {% endautoescape %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    {{ include("apl_includes/footer.twig") }}
+  </footer>
+</div>
+{{ include("apl_includes/footer_meta.twig") }}
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{ include("apl_includes/header_meta.twig") }}
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    {{ include("apl_includes/header.twig") }}
+  </header>
+  <aside class="main-sidebar">
+    {{ include("apl_includes/sidebar.twig") }}
+  </aside>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="{{ page_message_class }}">
+        <h4>{{ page_title }}</h4>
+        <p>{{ page_message|striptags("<a><b><br><i><li><strong><u><ul>")|raw }}</p>
+      </div>
+    </section>
+    <section class="content">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{ page_title }}</h3>
+        </div>
+        <form action="{{ script_filename }}" method="post">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" name="product_title" value="{{ product_title }}" class="form-control" placeholder="Unique product name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Product Description</label>
+                <input type="text" name="product_description" value="{{ product_description }}" class="form-control" placeholder="Short product description (optional)">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Product SKU</label>
+                <input type="text" name="product_sku" value="{{ product_sku }}" class="form-control" placeholder="Unique stock keeping unit">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Product Homepage URL</label>
+                <input type="text" name="product_url_homepage" value="{{ product_url_homepage }}" class="form-control" placeholder="Product homepage URL (optional)">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Product Download URL</label>
+                <input type="text" name="product_url_download" value="{{ product_url_download }}" class="form-control" placeholder="Product download URL (optional)">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Product Version</label>
+                <input type="text" name="product_version" value="{{ product_version }}" class="form-control" placeholder="Product version (optional)">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Product Status</label>
+                <select name="product_status" class="form-control select2"><option value="1">Active</option><option value="0"{% if product_status is defined and product_status==0 %} selected{% endif %}>Inactive</option></select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="checkbox icheck">
+                <label><input type="checkbox" name="delete_record" value="1"> Delete Record</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+            <input type="hidden" name="product_id" value="{{ product_id }}"><button type="submit" name="submit_ok" class="btn btn-primary">Submit</button>
+        </div>
+        </form>
+      </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    {{ include("apl_includes/footer.twig") }}
+  </footer>
+</div>
+{{ include("apl_includes/footer_meta.twig") }}
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{ include("apl_includes/header_meta.twig") }}
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    {{ include("apl_includes/header.twig") }}
+  </header>
+  <aside class="main-sidebar">
+    {{ include("apl_includes/sidebar.twig") }}
+  </aside>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="{{ page_message_class }}">
+        <h4>{{ page_title }}</h4>
+        <p>{{ page_message|striptags("<a><b><br><i><li><strong><u><ul>")|raw }}</p>
+      </div>
+    </section>
+    <section class="content">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{ page_title }}</h3>
+        </div>
+        <form action="{{ script_filename }}" method="post">
+        <div class="box-body">
+          <table class="custom_table table table-bordered table-striped">
+            <thead>
+              <tr>
+                 <th width="10" class="sorting-disabled"><input type="checkbox" class="check-all-rows"></th>
+                 <th>Client or License Code</th>
+                 <th>Report Text</th>
+                 <th>Date</th>
+                 <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item_array in license_reports_array %}
+              <tr>
+                <td><input type="checkbox" name="report_ids_array[]" value="{{ item_array.report_id }}"></td>
+                <td>{% autoescape false %}{{ item_array.client_formatted }}{% endautoescape %}</td>
+                <td>{{ item_array.report_text }}</td>
+                <td>{{ item_array.report_date }}</td>
+                <td><span class="{{ item_array.report_status_formatted.status_class }}">{{ item_array.report_status_formatted.status_text }}</span></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+                 <th width="10" class="sorting-disabled"><input type="checkbox" class="check-all-rows"></th>
+                 <th>Client or License Code</th>
+                 <th>Report Text</th>
+                 <th>Date</th>
+                 <th>Status</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="box-footer">
+            <button type="submit" name="submit_ok" class="btn btn-primary">Submit</button>
+        </div>
+        </form>
+      </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    {{ include("apl_includes/footer.twig") }}
+  </footer>
+</div>
+{{ include("apl_includes/footer_meta.twig") }}
+</body>
+</html>
